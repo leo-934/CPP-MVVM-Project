@@ -1,10 +1,10 @@
-#include "view.h"
+#include "app.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    View w;
-    w.show();
+    App app;
+    app.run();
     return a.exec();
 }

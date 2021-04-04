@@ -21,24 +21,63 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Source Files\view">
+      <UniqueIdentifier>{605b579d-d227-4b23-987e-8476d6a21e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\view">
+      <UniqueIdentifier>{4a0ebaf0-5943-4e68-88a3-a7d504eca5ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{5c33229d-e236-4550-bea8-e8edae82c778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\app">
+      <UniqueIdentifier>{ed449682-0628-472e-8471-3a5b6fadf6f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\app">
+      <UniqueIdentifier>{377dd93e-d5b2-436b-bc76-9d55fc270dc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{8f88b3ec-a5c6-4ce4-92a5-53f0d82446ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="view.qrc">
+    <QtRcc Include="..\view\view.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="view.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtMoc Include="view.h">
-      <Filter>Header Files</Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="..\view\view.h">
+      <Filter>Header Files\view</Filter>
     </QtMoc>
-    <ClCompile Include="view.cpp">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\def.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\app.h">
+      <Filter>Header Files\app</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\stylesheet.h">
+      <Filter>Header Files\view</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\view\view.cpp">
+      <Filter>Source Files\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\app.cpp">
+      <Filter>Source Files\app</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\stylesheet.cpp">
+      <Filter>Source Files\view</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <QtUic Include="..\view\view.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
 </Project>

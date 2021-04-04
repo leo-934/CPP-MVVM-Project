@@ -55,6 +55,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <IncludePath>$(SolutionDir).\app\;$(SolutionDir).\common\;$(SolutionDir).\view\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
@@ -67,7 +68,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -85,11 +86,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <QtRcc Include="view.qrc" />
-    <QtUic Include="view.ui" />
-    <QtMoc Include="view.h" />
-    <ClCompile Include="view.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClInclude Include="..\app\app.h" />
+    <ClInclude Include="..\common\def.h" />
+    <ClInclude Include="..\common\stylesheet.h" />
+    <QtMoc Include="..\view\view.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\view\view.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\app\app.cpp" />
+    <ClCompile Include="..\common\stylesheet.cpp" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\view\view.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="..\view\view.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
