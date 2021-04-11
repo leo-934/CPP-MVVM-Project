@@ -1,8 +1,8 @@
 #pragma once
 #include <QWidget>
 
-extern const QString backgroundimg;
-extern const QString backgroundtrans;
-extern const QString backgroundpink;
-extern const QString backgroundwhite;
-extern const QString fontwhite;
+extern const QString backgroundImg;
+extern const QString backgroundTrans;
+extern const QString backgroundPink;
+extern const QString backgroundWhite;
+extern const QString fontWhite;

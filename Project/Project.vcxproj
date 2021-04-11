@@ -55,10 +55,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <IncludePath>$(SolutionDir).\app\;$(SolutionDir).\common\;$(SolutionDir).\view\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir).\model\;$(SolutionDir).\viewmodel\;$(SolutionDir).\app\;$(SolutionDir).\common\;$(SolutionDir).\view\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -88,7 +98,10 @@
   <ItemGroup>
     <ClInclude Include="..\app\app.h" />
     <ClInclude Include="..\common\def.h" />
+    <ClInclude Include="..\common\event.h" />
     <ClInclude Include="..\common\stylesheet.h" />
+    <ClInclude Include="..\model\model.h" />
+    <ClInclude Include="..\viewmodel\viewmodel.h" />
     <QtMoc Include="..\view\view.h" />
   </ItemGroup>
   <ItemGroup>
@@ -96,8 +109,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\app\app.cpp" />
+    <ClCompile Include="..\common\event.cpp" />
     <ClCompile Include="..\common\stylesheet.cpp" />
     <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\model\model.cpp" />
+    <ClCompile Include="..\viewmodel\viewmodel.cpp" />
     <ClCompile Include="..\view\view.cpp" />
   </ItemGroup>
   <ItemGroup>
