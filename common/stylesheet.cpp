@@ -1,6 +1,6 @@
 #include "stylesheet.h"
-const QString backgroundimg = "background-image: url(../resource/backgroundimg.jpg);";
-const QString backgroundtrans = "background:transparent;";
-const QString backgroundpink = "background-color: #FFCCCC;";
-const QString backgroundwhite = "background-color: #FFFFFF;";
-const QString fontwhite = "color: #FFFFFF;";
+const QString backgroundImg = "background-image: url(../resource/backgroundimg.jpg);";
+const QString backgroundTrans = "background:transparent;";
+const QString backgroundPink = "background-color: #FFCCCC;";
+const QString backgroundWhite = "background-color: #FFFFFF;";
+const QString fontWhite = "color: #FFFFFF;";

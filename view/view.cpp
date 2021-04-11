@@ -1,8 +1,12 @@
 #include "view.h"
 #include "stylesheet.h"
+
 #include <memory>
+
 #include <QDebug>
-View::View(QWidget* parent)
+#include <QFileDialog>
+
+MainView::MainView(QWidget* parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
@@ -30,90 +34,103 @@ View::View(QWidget* parent)
 	menuBar = ptr<QMenuBar>(ui.menuBar);
 }
 
-void View::onLoadButtonClicked()
+void MainView::onLoadButtonClicked()
 {
 	qDebug() << "loadbutton clicked";
+
+	auto path = QFileDialog::getOpenFileName(
+		NULL,
+		"select an image file",
+		"C:\\",
+		"Images(*.png * .jpg)"
+	);
+	qDebug() << path;
+
+	setFilePath(filePath);
+	EventManager::raiseEvent(loadImage);
 }
 
-void View::onResetButtonClicked()
+void MainView::onResetButtonClicked()
 {
 	qDebug() << "resetbutton clicked";
+	initDefaultText();
 }
 
-void View::onEditButtonClicked()
+void MainView::onEditButtonClicked()
 {
 	qDebug() << "editbutton clicked";
 }
 
-void View::onApplyButtonClicked()
+void MainView::onApplyButtonClicked()
 {
 	qDebug() << "applybutton clicked";
 }
 
-void View::onDownloadButtonClicked()
+void MainView::onDownloadButtonClicked()
 {
 	qDebug() << "downloadbutton clicked";
 }
 
-void View::onPrettifyButtonClicked()
+void MainView::onPrettifyButtonClicked()
 {
 	qDebug() << "prettifybutton clicked";
 }
 
-void View::onCalculateButtonClicked()
+void MainView::onCalculateButtonClicked()
 {
 	qDebug() << "calculateButton clicked";
 }
 
-void View::init()
+void MainView::init()
 {
 	setWindowTitle("Welcome!");
 	setMinimumSize(960, 600);
-	setStyleSheet(backgroundpink);
+	setStyleSheet(backgroundPink);
 
-	latexEditor->setStyleSheet(backgroundwhite);
+	latexEditor->setStyleSheet(backgroundWhite);
 
-	imgLabel->setStyleSheet(backgroundwhite);
-	latexEditor->setStyleSheet(backgroundwhite);
+	imgLabel->setStyleSheet(backgroundWhite);
+	latexEditor->setStyleSheet(backgroundWhite);
 
-	loadButton->setStyleSheet(backgroundwhite);
-	resetButton->setStyleSheet(backgroundwhite);
+	loadButton->setStyleSheet(backgroundWhite);
+	resetButton->setStyleSheet(backgroundWhite);
 
-	editButton->setStyleSheet(backgroundwhite);
-	applyButton->setStyleSheet(backgroundwhite);
-	downloadButton->setStyleSheet(backgroundwhite);
-	prettifyButton->setStyleSheet(backgroundwhite);
+	editButton->setStyleSheet(backgroundWhite);
+	applyButton->setStyleSheet(backgroundWhite);
+	downloadButton->setStyleSheet(backgroundWhite);
+	prettifyButton->setStyleSheet(backgroundWhite);
 
-	filePathEditor->setStyleSheet(backgroundwhite);
+	filePathEditor->setStyleSheet(backgroundWhite);
 
-	calculateButton->setStyleSheet(backgroundwhite);
+	calculateButton->setStyleSheet(backgroundWhite);
 
-	systemOperationsLabel->setStyleSheet(backgroundwhite);
-	latexOperationsLabel->setStyleSheet(backgroundwhite);
+	systemOperationsLabel->setStyleSheet(backgroundWhite);
+	latexOperationsLabel->setStyleSheet(backgroundWhite);
 
 	initSlots();
 	initMenu();
+	initDefaultText();
 }
 
-void View::initSlots()
+void MainView::initSlots()
 {
-	connect(loadButton.get(), &QPushButton::clicked, this, &onLoadButtonClicked);
-	connect(resetButton.get(), &QPushButton::clicked, this, &onResetButtonClicked);
-	connect(applyButton.get(), &QPushButton::clicked, this, &onApplyButtonClicked);
-	connect(editButton.get(), &QPushButton::clicked, this, &onEditButtonClicked);
-	connect(downloadButton.get(), &QPushButton::clicked, this, &onDownloadButtonClicked);
-	connect(prettifyButton.get(), &QPushButton::clicked, this, &onPrettifyButtonClicked);
-	connect(calculateButton.get(), &QPushButton::clicked, this, &onCalculateButtonClicked);
+	connect(loadButton.get(), &QPushButton::clicked, this, &MainView::onLoadButtonClicked);
+	connect(resetButton.get(), &QPushButton::clicked, this, &MainView::onResetButtonClicked);
+	connect(applyButton.get(), &QPushButton::clicked, this, &MainView::onApplyButtonClicked);
+	connect(editButton.get(), &QPushButton::clicked, this, &MainView::onEditButtonClicked);
+	connect(downloadButton.get(), &QPushButton::clicked, this, &MainView::onDownloadButtonClicked);
+	connect(prettifyButton.get(), &QPushButton::clicked, this, &MainView::onPrettifyButtonClicked);
+	connect(calculateButton.get(), &QPushButton::clicked, this, &MainView::onCalculateButtonClicked);
 
 }
 
-void View::initMenu()
+void MainView::initMenu()
 {
 	auto fileMenu = menuBar->addMenu("File");
 	auto loadAction = fileMenu->addAction("Load");
-	connect(loadAction, &QAction::triggered, this, &onLoadButtonClicked);
+	connect(loadAction, &QAction::triggered, this, &MainView::onLoadButtonClicked);
 	auto downloadAction = fileMenu->addAction("Download");
-	connect(downloadAction, &QAction::triggered, this, &onDownloadButtonClicked);
+	connect(downloadAction, &QAction::triggered, this, &MainView::onDownloadButtonClicked);
 	auto exitAction = fileMenu->addAction("Exit");
 	connect(exitAction, &QAction::triggered, this, [&]() {
 		qDebug() << "exit";
@@ -121,6 +138,36 @@ void View::initMenu()
 		});
 	//about菜单还没有connect槽函数
 	auto aboutAction = menuBar->addAction("About");
-	
+
 
 }
+
+void MainView::initDefaultText()
+{
+	const QString defaultText = "No image loaded";
+	imgLabel->setText(defaultText);
+	latexEditor->setText(defaultText);
+	filePathEditor->setText(defaultText);
+}
+
+void MainView::setFilePath(const QString& path)
+{
+	filePath = path;
+	filePathEditor->setText(filePath);
+}
+
+const QString& MainView::getFilePath()
+{
+	return filePath;
+	// TODO: insert return statement here
+}
+
+void MainView::bindloadImage(workFunctionNoAll function)
+{
+	loadImage = EventManager::registerEvent(function);
+	
+}
+
+
+
+

@@ -39,6 +39,18 @@
     <Filter Include="Source Files\common">
       <UniqueIdentifier>{8f88b3ec-a5c6-4ce4-92a5-53f0d82446ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\model">
+      <UniqueIdentifier>{74da65dd-1963-426f-904e-631629df9416}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{5f310edc-ab77-4402-8a8a-363e079d625a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\viewmodel">
+      <UniqueIdentifier>{fe03fe85-8c2a-4b59-80fd-ff7a27053304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\viewmodel">
+      <UniqueIdentifier>{3237c556-126f-4a10-b132-9da670ea3f78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="..\view\view.qrc">
@@ -60,6 +72,15 @@
     <ClInclude Include="..\common\stylesheet.h">
       <Filter>Header Files\view</Filter>
     </ClInclude>
+    <ClInclude Include="..\viewmodel\viewmodel.h">
+      <Filter>Header Files\viewmodel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\model\model.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\event.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\view\view.cpp">
@@ -73,6 +94,15 @@
     </ClCompile>
     <ClCompile Include="..\common\stylesheet.cpp">
       <Filter>Source Files\view</Filter>
+    </ClCompile>
+    <ClCompile Include="..\viewmodel\viewmodel.cpp">
+      <Filter>Source Files\viewmodel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\model.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\event.cpp">
+      <Filter>Source Files\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -5,53 +5,68 @@
 //#include <QPushButton>
 #include "def.h"
 #include "ui_view.h"
+#include "event.h"
 
-
-class View : public QMainWindow
+class MainView : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    View(QWidget *parent = Q_NULLPTR);
+	MainView(QWidget* parent = Q_NULLPTR);
+
+private slots:
+	void onLoadButtonClicked();
+	void onResetButtonClicked();
+	void onEditButtonClicked();
+	void onApplyButtonClicked();
+	void onDownloadButtonClicked();
+	void onPrettifyButtonClicked();
+	void onCalculateButtonClicked();
 
 private:
-    static void onLoadButtonClicked();
-    static void onResetButtonClicked();
-    static void onEditButtonClicked();
-    static void onApplyButtonClicked();
-    static void onDownloadButtonClicked();
-    static void onPrettifyButtonClicked();
-    static void onCalculateButtonClicked();
+	ptr<QGridLayout> gridLayoutParent;
 
-    ptr<QGridLayout> gridLayoutParent;
+	ptr<QLabel> imgLabel;
+	ptr<QTextEdit> latexEditor;
+	ptr<QGridLayout> gridLayoutSon;
 
-    ptr<QLabel> imgLabel;
-    ptr<QTextEdit> latexEditor;
-    ptr<QGridLayout> gridLayoutSon;
+	ptr<QPushButton> loadButton;
+	ptr<QPushButton> resetButton;
 
-    ptr<QPushButton> loadButton;
-    ptr<QPushButton> resetButton;
+	ptr<QPushButton> editButton;
+	ptr<QPushButton> applyButton;
+	ptr<QPushButton> downloadButton;
+	ptr<QPushButton> prettifyButton;
 
-    ptr<QPushButton> editButton;
-    ptr<QPushButton> applyButton;
-    ptr<QPushButton> downloadButton;
-    ptr<QPushButton> prettifyButton;
+	ptr<QTextEdit> filePathEditor;
 
-    ptr<QTextEdit> filePathEditor;
+	ptr<QPushButton> calculateButton;
 
-    ptr<QPushButton> calculateButton;
-    
-    ptr<QLabel> systemOperationsLabel;
-    ptr<QLabel> latexOperationsLabel;
+	ptr<QLabel> systemOperationsLabel;
+	ptr<QLabel> latexOperationsLabel;
 
-    ptr<QMenuBar> menuBar;
-    //ptr<QMenu> fileMenu;
-    //ptr<QMenu> aboutMenu;
+	ptr<QMenuBar> menuBar;
+	//ptr<QMenu> fileMenu;
+	//ptr<QMenu> aboutMenu;
 
-    Ui::ViewClass ui;
+	eventId loadImage;
+	
+	//data
+	QString filePath;
+
+	Ui::ViewClass ui;
 
 public:
-    void init();
-    void initSlots();
-    void initMenu();
+	void init();
+	void initSlots();
+	void initMenu();
+	void initDefaultText();
+	
+	//所有数据的更改必须使用set函数，不可直接访问私有数据成员，因为set函数内部还会操控组件更改。
+
+	void setFilePath(const QString& filePath);
+	const QString& getFilePath();
+	
+	void bindloadImage(workFunctionNoAll function);
+
 };

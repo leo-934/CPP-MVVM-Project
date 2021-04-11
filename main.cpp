@@ -1,10 +1,11 @@
-#include "app.h"
+//#include "app.h"
+#include "viewmodel.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    App app;
-    app.run();
+    ViewModel viewModel;
+    viewModel.run();
     return a.exec();
 }
