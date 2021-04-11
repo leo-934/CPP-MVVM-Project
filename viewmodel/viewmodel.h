@@ -10,7 +10,7 @@ private:
 	ptr<LocalModel> localModel;
 	ptr<MainView> mainView;
 
-	callbackFunction loadImage;
+	callbackFunction getLatexFromImage;
 	
 	//两次更改之间可重用多次的数据会留在vm中，每次更改后只使用一次的不会。
 

@@ -2,9 +2,12 @@
 #include "stylesheet.h"
 
 #include <memory>
-
+#include <exception>
 #include <QDebug>
 #include <QFileDialog>
+#include <QMessageBox>
+#include <QImage>
+#include <QPixmap>
 
 MainView::MainView(QWidget* parent)
 	: QMainWindow(parent)
@@ -17,6 +20,7 @@ MainView::MainView(QWidget* parent)
 	gridLayoutSon = ptr<QGridLayout>(ui.gridLayoutSon);
 
 	loadButton = ptr<QPushButton>(ui.loadButton);
+	ocrButton = ptr<QPushButton>(ui.ocrButton);
 	resetButton = ptr<QPushButton>(ui.resetButton);
 
 	editButton = ptr<QPushButton>(ui.editButton);
@@ -24,7 +28,7 @@ MainView::MainView(QWidget* parent)
 	downloadButton = ptr<QPushButton>(ui.DownloadButton);
 	prettifyButton = ptr<QPushButton>(ui.prettifyButton);
 
-	filePathEditor = ptr<QTextEdit>(ui.filePathEditor);
+	filePathBrowser = ptr<QTextBrowser>(ui.filePathBrowser);
 
 	calculateButton = ptr<QPushButton>(ui.calculateButton);
 
@@ -42,18 +46,41 @@ void MainView::onLoadButtonClicked()
 		NULL,
 		"select an image file",
 		"C:\\",
-		"Images(*.png * .jpg)"
+		"image(*.png * .jpg)"
 	);
 	qDebug() << path;
 
-	setFilePath(filePath);
-	EventManager::raiseEvent(loadImage);
+	setFilePath(path);
+
+	if (filePath != "") {
+		auto tmpimg = QImage(filePath);
+		imgLabel->setPixmap(QPixmap::fromImage(tmpimg));
+	}
+	else {
+		qDebug()<< "invalid filePath";
+	}
+	
+	
+}
+
+void MainView::onOcrButtonClicked()
+{
+	if (filePath == defaultText) {
+		QMessageBox::about(NULL, "error", "No image loaded\nPlease load an image before ocr");
+	}
+	else if (filePath != "") {
+		//raise a event to ocr
+		EventManager::raiseEvent(getLatexFromImage);
+	}
+	else {
+		throw std::exception("invalid filePath");
+	}
 }
 
 void MainView::onResetButtonClicked()
 {
 	qDebug() << "resetbutton clicked";
-	initDefaultText();
+	initDefaultContent();
 }
 
 void MainView::onEditButtonClicked()
@@ -93,6 +120,7 @@ void MainView::init()
 	latexEditor->setStyleSheet(backgroundWhite);
 
 	loadButton->setStyleSheet(backgroundWhite);
+	ocrButton->setStyleSheet(backgroundWhite);
 	resetButton->setStyleSheet(backgroundWhite);
 
 	editButton->setStyleSheet(backgroundWhite);
@@ -100,7 +128,7 @@ void MainView::init()
 	downloadButton->setStyleSheet(backgroundWhite);
 	prettifyButton->setStyleSheet(backgroundWhite);
 
-	filePathEditor->setStyleSheet(backgroundWhite);
+	filePathBrowser->setStyleSheet(backgroundWhite);
 
 	calculateButton->setStyleSheet(backgroundWhite);
 
@@ -109,12 +137,13 @@ void MainView::init()
 
 	initSlots();
 	initMenu();
-	initDefaultText();
+	initDefaultContent();
 }
 
 void MainView::initSlots()
 {
 	connect(loadButton.get(), &QPushButton::clicked, this, &MainView::onLoadButtonClicked);
+	connect(ocrButton.get(), &QPushButton::clicked, this, &MainView::onOcrButtonClicked);
 	connect(resetButton.get(), &QPushButton::clicked, this, &MainView::onResetButtonClicked);
 	connect(applyButton.get(), &QPushButton::clicked, this, &MainView::onApplyButtonClicked);
 	connect(editButton.get(), &QPushButton::clicked, this, &MainView::onEditButtonClicked);
@@ -142,18 +171,17 @@ void MainView::initMenu()
 
 }
 
-void MainView::initDefaultText()
+void MainView::initDefaultContent()
 {
-	const QString defaultText = "No image loaded";
 	imgLabel->setText(defaultText);
-	latexEditor->setText(defaultText);
-	filePathEditor->setText(defaultText);
+	setLatexString(defaultText);
+	setFilePath(defaultText);
 }
 
 void MainView::setFilePath(const QString& path)
 {
 	filePath = path;
-	filePathEditor->setText(filePath);
+	filePathBrowser->setText(filePath);
 }
 
 const QString& MainView::getFilePath()
@@ -162,9 +190,21 @@ const QString& MainView::getFilePath()
 	// TODO: insert return statement here
 }
 
+void MainView::setLatexString(const QString& tmpString)
+{
+	latexString = tmpString;
+	latexEditor->setText(tmpString);
+}
+
+const QString& MainView::getLatexString()
+{
+	return latexString;
+	// TODO: insert return statement here
+}
+
 void MainView::bindloadImage(workFunctionNoAll function)
 {
-	loadImage = EventManager::registerEvent(function);
+	getLatexFromImage = EventManager::registerEvent(function);
 	
 }
 

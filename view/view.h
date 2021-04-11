@@ -16,6 +16,7 @@ public:
 
 private slots:
 	void onLoadButtonClicked();
+	void onOcrButtonClicked();
 	void onResetButtonClicked();
 	void onEditButtonClicked();
 	void onApplyButtonClicked();
@@ -31,6 +32,7 @@ private:
 	ptr<QGridLayout> gridLayoutSon;
 
 	ptr<QPushButton> loadButton;
+	ptr<QPushButton> ocrButton;
 	ptr<QPushButton> resetButton;
 
 	ptr<QPushButton> editButton;
@@ -38,7 +40,7 @@ private:
 	ptr<QPushButton> downloadButton;
 	ptr<QPushButton> prettifyButton;
 
-	ptr<QTextEdit> filePathEditor;
+	ptr<QTextBrowser> filePathBrowser;
 
 	ptr<QPushButton> calculateButton;
 
@@ -46,13 +48,16 @@ private:
 	ptr<QLabel> latexOperationsLabel;
 
 	ptr<QMenuBar> menuBar;
-	//ptr<QMenu> fileMenu;
-	//ptr<QMenu> aboutMenu;
 
-	eventId loadImage;
+	const QString defaultText = "No image loaded";
+
+	eventId getLatexFromImage;
+	
 	
 	//data
 	QString filePath;
+	QString latexString;
+
 
 	Ui::ViewClass ui;
 
@@ -60,13 +65,16 @@ public:
 	void init();
 	void initSlots();
 	void initMenu();
-	void initDefaultText();
+	void initDefaultContent();
 	
 	//所有数据的更改必须使用set函数，不可直接访问私有数据成员，因为set函数内部还会操控组件更改。
 
 	void setFilePath(const QString& filePath);
 	const QString& getFilePath();
 	
+	void setLatexString(const QString& tmpString);
+	const QString& getLatexString();
+
 	void bindloadImage(workFunctionNoAll function);
 
 };

@@ -1,6 +1,6 @@
 #include "model.h"
 
-void LocalModel::loadImage(std::string filePath)
+void LocalModel::getLatexFromImage(std::string filePath)
 {
-	qDebug() << "loadImage function of LocalModel";
+	qDebug() << "getLatexFromImage function of LocalModel";
 }

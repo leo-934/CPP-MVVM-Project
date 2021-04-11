@@ -18,7 +18,7 @@ void ViewModel::bindMainView(ptr<MainView> view)
 	mainView = view;
 
 	//bind view to viewmodel
-	mainView->bindloadImage(loadImage);
+	mainView->bindloadImage(getLatexFromImage);
 
 }
 
@@ -27,8 +27,8 @@ void ViewModel::bindLocalModel(ptr<LocalModel> model)
 	localModel = model;
 	
 	//bind viewmodel to localmodel
-	loadImage = [this]() {
+	getLatexFromImage = [this]() {
 		auto path = mainView->getFilePath();
-		localModel->loadImage(path.toStdString());
+		localModel->getLatexFromImage(path.toStdString());
 	};
 }
