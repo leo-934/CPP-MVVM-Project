@@ -49,15 +49,17 @@ private:
 
 	ptr<QMenuBar> menuBar;
 
+	ptr<QImage> imgPtr;
+
 	const QString defaultText = "No image loaded";
 
-	eventId getLatexFromImage;
+	eventId getLatexFromBase64;
+
 	
 	
-	//data
+	//data need to be stored for a while
 	QString filePath;
 	QString latexString;
-
 
 	Ui::ViewClass ui;
 
@@ -69,12 +71,15 @@ public:
 	
 	//所有数据的更改必须使用set函数，不可直接访问私有数据成员，因为set函数内部还会操控组件更改。
 
+	//imgptr don't need a setter.
+	const ptr<QImage> getImgPtr();
+
 	void setFilePath(const QString& filePath);
 	const QString& getFilePath();
 	
 	void setLatexString(const QString& tmpString);
 	const QString& getLatexString();
 
-	void bindloadImage(workFunctionNoAll function);
+	void bindGetLatexFromBase64(workFunctionNoAll function);
 
 };

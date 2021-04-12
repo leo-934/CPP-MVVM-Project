@@ -1,4 +1,4 @@
-#include "view.h"
+#include "mainview.h"
 #include "stylesheet.h"
 
 #include <memory>
@@ -53,8 +53,8 @@ void MainView::onLoadButtonClicked()
 	setFilePath(path);
 
 	if (filePath != "") {
-		auto tmpimg = QImage(filePath);
-		imgLabel->setPixmap(QPixmap::fromImage(tmpimg));
+		imgPtr = std::make_shared<QImage>(filePath);
+		imgLabel->setPixmap(QPixmap::fromImage(*imgPtr));
 	}
 	else {
 		qDebug()<< "invalid filePath";
@@ -70,7 +70,8 @@ void MainView::onOcrButtonClicked()
 	}
 	else if (filePath != "") {
 		//raise a event to ocr
-		EventManager::raiseEvent(getLatexFromImage);
+
+		EventManager::raiseEvent(getLatexFromBase64);
 	}
 	else {
 		throw std::exception("invalid filePath");
@@ -178,6 +179,11 @@ void MainView::initDefaultContent()
 	setFilePath(defaultText);
 }
 
+const ptr<QImage> MainView::getImgPtr()
+{
+	return imgPtr;
+}
+
 void MainView::setFilePath(const QString& path)
 {
 	filePath = path;
@@ -202,9 +208,9 @@ const QString& MainView::getLatexString()
 	// TODO: insert return statement here
 }
 
-void MainView::bindloadImage(workFunctionNoAll function)
+void MainView::bindGetLatexFromBase64(workFunctionNoAll function)
 {
-	getLatexFromImage = EventManager::registerEvent(function);
+	getLatexFromBase64 = EventManager::registerEvent(function);
 	
 }
 

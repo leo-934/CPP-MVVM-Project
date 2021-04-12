@@ -58,7 +58,7 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="..\view\view.h">
+    <QtMoc Include="..\view\mainview.h">
       <Filter>Header Files\view</Filter>
     </QtMoc>
   </ItemGroup>
@@ -75,15 +75,18 @@
     <ClInclude Include="..\viewmodel\viewmodel.h">
       <Filter>Header Files\viewmodel</Filter>
     </ClInclude>
-    <ClInclude Include="..\model\model.h">
+    <ClInclude Include="..\model\localmodel.h">
       <Filter>Header Files\model</Filter>
     </ClInclude>
     <ClInclude Include="..\common\event.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
+    <ClInclude Include="..\model\remotemodel.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\view\view.cpp">
+    <ClCompile Include="..\view\mainview.cpp">
       <Filter>Source Files\view</Filter>
     </ClCompile>
     <ClCompile Include="..\main.cpp">
@@ -98,11 +101,14 @@
     <ClCompile Include="..\viewmodel\viewmodel.cpp">
       <Filter>Source Files\viewmodel</Filter>
     </ClCompile>
-    <ClCompile Include="..\model\model.cpp">
+    <ClCompile Include="..\model\localmodel.cpp">
       <Filter>Source Files\model</Filter>
     </ClCompile>
     <ClCompile Include="..\common\event.cpp">
       <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\remotemodel.cpp">
+      <Filter>Source Files\model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
