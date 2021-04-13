@@ -29,44 +29,37 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <layout class="QGridLayout" name="gridLayoutParent" rowstretch="1,1" columnstretch="618,382">
+      <item row="0" column="0">
+       <widget class="QLabel" name="imgLabel">
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1" rowspan="2">
-       <layout class="QGridLayout" name="gridLayoutSon" rowstretch="1,1,1,1,1,1,1,2,4,1,1" columnstretch="2,1,1,1,1,1,1">
-        <item row="9" column="1" colspan="4">
-         <widget class="QPushButton" name="calculateButton">
+       <layout class="QGridLayout" name="gridLayoutSon" rowstretch="1,1,1,1,1,1,1,1,4,1,1" columnstretch="2,1,1,1,1,1,1">
+        <item row="3" column="4" rowspan="2">
+         <widget class="QPushButton" name="resetButton">
           <property name="text">
-           <string>calculate</string>
+           <string>reset</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="1" rowspan="2" colspan="4">
-         <spacer name="verticalSpacer">
+        <item row="6" column="2" rowspan="2" colspan="2">
+         <spacer name="horizontalSpacer_4">
           <property name="orientation">
-           <enum>Qt::Vertical</enum>
+           <enum>Qt::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>20</width>
-            <height>40</height>
+            <width>40</width>
+            <height>20</height>
            </size>
           </property>
          </spacer>
-        </item>
-        <item row="2" column="1" colspan="4">
-         <widget class="QLabel" name="systemOperationsLabel">
-          <property name="text">
-           <string>System Operations</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1" rowspan="2">
-         <widget class="QPushButton" name="loadButton">
-          <property name="text">
-           <string>load</string>
-          </property>
-         </widget>
         </item>
         <item row="0" column="5" rowspan="11" colspan="2">
          <spacer name="horizontalSpacer_2">
@@ -81,33 +74,17 @@
           </property>
          </spacer>
         </item>
-        <item row="7" column="1">
-         <widget class="QPushButton" name="DownloadButton">
+        <item row="7" column="4">
+         <widget class="QPushButton" name="prettifyButton">
           <property name="text">
-           <string>download</string>
+           <string>prettify</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="0" rowspan="11">
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="5" column="1" colspan="4">
-         <widget class="QLabel" name="latexOperationsLabel">
+        <item row="6" column="1">
+         <widget class="QPushButton" name="editButton">
           <property name="text">
-           <string>Latex Operations</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <string>edit</string>
           </property>
          </widget>
         </item>
@@ -124,41 +101,22 @@
           </property>
          </spacer>
         </item>
-        <item row="6" column="1">
-         <widget class="QPushButton" name="editButton">
+        <item row="7" column="1">
+         <widget class="QPushButton" name="DownloadButton">
           <property name="text">
-           <string>edit</string>
+           <string>download</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="4" rowspan="2">
-         <widget class="QPushButton" name="resetButton">
+        <item row="3" column="1" rowspan="2">
+         <widget class="QPushButton" name="loadButton">
           <property name="text">
-           <string>reset</string>
+           <string>load</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="1" colspan="4">
-         <widget class="QTextEdit" name="filePathEditor"/>
-        </item>
-        <item row="3" column="2" rowspan="2" colspan="2">
-         <spacer name="horizontalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Expanding</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="6" column="2" rowspan="2" colspan="2">
-         <spacer name="horizontalSpacer_4">
+        <item row="0" column="0" rowspan="11">
+         <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -170,6 +128,39 @@
           </property>
          </spacer>
         </item>
+        <item row="0" column="1" rowspan="2" colspan="4">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="5" column="1" colspan="4">
+         <widget class="QLabel" name="latexOperationsLabel">
+          <property name="text">
+           <string>Latex Operations</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" colspan="4">
+         <widget class="QLabel" name="systemOperationsLabel">
+          <property name="text">
+           <string>System Operations</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
         <item row="6" column="4">
          <widget class="QPushButton" name="applyButton">
           <property name="text">
@@ -177,24 +168,24 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="4">
-         <widget class="QPushButton" name="prettifyButton">
+        <item row="9" column="1" colspan="4">
+         <widget class="QPushButton" name="calculateButton">
           <property name="text">
-           <string>prettify</string>
+           <string>calculate</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1" colspan="4">
+         <widget class="QTextBrowser" name="filePathBrowser"/>
+        </item>
+        <item row="3" column="2" rowspan="2" colspan="2">
+         <widget class="QPushButton" name="ocrButton">
+          <property name="text">
+           <string>ocr</string>
           </property>
          </widget>
         </item>
        </layout>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="imgLabel">
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QTextEdit" name="latexEditor"/>

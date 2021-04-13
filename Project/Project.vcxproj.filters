@@ -24,9 +24,6 @@
     <Filter Include="Source Files\view">
       <UniqueIdentifier>{605b579d-d227-4b23-987e-8476d6a21e91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\view">
-      <UniqueIdentifier>{4a0ebaf0-5943-4e68-88a3-a7d504eca5ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\common">
       <UniqueIdentifier>{5c33229d-e236-4550-bea8-e8edae82c778}</UniqueIdentifier>
     </Filter>
@@ -51,6 +48,9 @@
     <Filter Include="Header Files\viewmodel">
       <UniqueIdentifier>{3237c556-126f-4a10-b132-9da670ea3f78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\view">
+      <UniqueIdentifier>{4a0ebaf0-5943-4e68-88a3-a7d504eca5ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="..\view\view.qrc">
@@ -58,7 +58,7 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="..\view\view.h">
+    <QtMoc Include="..\view\mainview.h">
       <Filter>Header Files\view</Filter>
     </QtMoc>
   </ItemGroup>
@@ -75,15 +75,18 @@
     <ClInclude Include="..\viewmodel\viewmodel.h">
       <Filter>Header Files\viewmodel</Filter>
     </ClInclude>
-    <ClInclude Include="..\model\model.h">
+    <ClInclude Include="..\model\localmodel.h">
       <Filter>Header Files\model</Filter>
     </ClInclude>
     <ClInclude Include="..\common\event.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
+    <ClInclude Include="..\model\remotemodel.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\view\view.cpp">
+    <ClCompile Include="..\view\mainview.cpp">
       <Filter>Source Files\view</Filter>
     </ClCompile>
     <ClCompile Include="..\main.cpp">
@@ -98,10 +101,16 @@
     <ClCompile Include="..\viewmodel\viewmodel.cpp">
       <Filter>Source Files\viewmodel</Filter>
     </ClCompile>
-    <ClCompile Include="..\model\model.cpp">
+    <ClCompile Include="..\model\localmodel.cpp">
       <Filter>Source Files\model</Filter>
     </ClCompile>
     <ClCompile Include="..\common\event.cpp">
+      <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\model\remotemodel.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\def.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
   </ItemGroup>

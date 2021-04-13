@@ -1,0 +1,1 @@
+{"words_result":[{"words":"\\sigma \\left( z \\right) = \\frac { 1 } { 1 + e ^ { - t } } ","location":{"top":24,"left":24,"width":320,"height":121}}],"log_id":1381867810719793152,"words_result_num":1}
