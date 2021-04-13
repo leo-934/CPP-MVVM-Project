@@ -24,9 +24,6 @@
     <Filter Include="Source Files\view">
       <UniqueIdentifier>{605b579d-d227-4b23-987e-8476d6a21e91}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\view">
-      <UniqueIdentifier>{4a0ebaf0-5943-4e68-88a3-a7d504eca5ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\common">
       <UniqueIdentifier>{5c33229d-e236-4550-bea8-e8edae82c778}</UniqueIdentifier>
     </Filter>
@@ -50,6 +47,9 @@
     </Filter>
     <Filter Include="Header Files\viewmodel">
       <UniqueIdentifier>{3237c556-126f-4a10-b132-9da670ea3f78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\view">
+      <UniqueIdentifier>{4a0ebaf0-5943-4e68-88a3-a7d504eca5ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="..\model\remotemodel.cpp">
       <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\def.cpp">
+      <Filter>Source Files\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

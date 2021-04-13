@@ -208,11 +208,6 @@ const QString& MainView::getLatexString()
 	// TODO: insert return statement here
 }
 
-void MainView::bindGetLatexFromBase64(workFunctionNoAll function)
-{
-	getLatexFromBase64 = EventManager::registerEvent(function);
-	
-}
 
 
 

@@ -55,7 +55,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <IncludePath>$(SolutionDir).\HttpManager;$(SolutionDir).\model\;$(SolutionDir).\viewmodel\;$(SolutionDir).\app\;$(SolutionDir).\common\;$(SolutionDir).\view\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir).\include\rapidjson;$(SolutionDir).\HttpManager;$(SolutionDir).\model\;$(SolutionDir).\viewmodel\;$(SolutionDir).\app\;$(SolutionDir).\common\;$(SolutionDir).\view\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <IncludePath>$(SolutionDir).\model\;$(SolutionDir).\viewmodel\;$(SolutionDir).\app\;$(SolutionDir).\common\;$(SolutionDir).\view\;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
@@ -68,6 +68,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libcurl.lib;HttpManager.lib;$(Qt_LIBS_);%(AdditionalDependencies)</AdditionalDependencies>
@@ -101,7 +102,7 @@ copy  "$(SolutionDir)dll\HttpManager.dll" "$(OutDir)"</Command>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -133,6 +134,7 @@ copy  "$(SolutionDir)dll\HttpManager.dll" "$(OutDir)"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\app\app.cpp" />
+    <ClCompile Include="..\common\def.cpp" />
     <ClCompile Include="..\common\event.cpp" />
     <ClCompile Include="..\common\stylesheet.cpp" />
     <ClCompile Include="..\main.cpp" />

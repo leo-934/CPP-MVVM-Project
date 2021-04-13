@@ -80,6 +80,10 @@ public:
 	void setLatexString(const QString& tmpString);
 	const QString& getLatexString();
 
-	void bindGetLatexFromBase64(workFunctionNoAll function);
-
+	BIND_TEMPLATE(getLatexFromBase64)
+	/*
+	void bindgetLatexFromBase64(callbackFunction function) {
+		getLatexFromBase64 = EventManager::registerEvent(function);
+	}
+	*/
 };
