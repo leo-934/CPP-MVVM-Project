@@ -16,6 +16,7 @@ MainView::MainView(QWidget* parent)
 	gridLayoutParent = ptr<QGridLayout>(ui.gridLayoutParent);
 
 	imgLabel = ptr<QLabel>(ui.imgLabel);
+	latexLabel = std::make_shared<QLabel>();
 	latexEditor = ptr<QTextEdit>(ui.latexEditor);
 	gridLayoutSon = ptr<QGridLayout>(ui.gridLayoutSon);
 
@@ -36,6 +37,9 @@ MainView::MainView(QWidget* parent)
 	latexOperationsLabel = ptr<QLabel>(ui.latexOperationsLabel);
 
 	menuBar = ptr<QMenuBar>(ui.menuBar);
+
+	gridLayoutParent->addWidget(latexLabel.get(), 1, 0);
+
 }
 
 void MainView::onLoadButtonClicked()
@@ -53,8 +57,12 @@ void MainView::onLoadButtonClicked()
 	setFilePath(path);
 
 	if (filePath != "") {
-		imgPtr = std::make_shared<QImage>(filePath);
-		imgLabel->setPixmap(QPixmap::fromImage(*imgPtr));
+		try {
+			setImg(std::make_shared<QImage>(filePath));
+		}
+		catch (std::exception& e) {
+			qDebug() << e.what();
+		}
 	}
 	else {
 		qDebug()<< "invalid filePath";
@@ -72,6 +80,7 @@ void MainView::onOcrButtonClicked()
 		//raise a event to ocr
 
 		EventManager::raiseEvent(getLatexFromBase64);
+		changeLatexToEditor();
 	}
 	else {
 		throw std::exception("invalid filePath");
@@ -87,10 +96,14 @@ void MainView::onResetButtonClicked()
 void MainView::onEditButtonClicked()
 {
 	qDebug() << "editbutton clicked";
+	changeLatexToEditor();
 }
 
 void MainView::onApplyButtonClicked()
 {
+	changeLatexToLabel();
+	setLatexString(latexEditor->toPlainText());
+	EventManager::raiseEvent(getSvgFromLatexString);
 	qDebug() << "applybutton clicked";
 }
 
@@ -109,6 +122,13 @@ void MainView::onCalculateButtonClicked()
 	qDebug() << "calculateButton clicked";
 }
 
+void MainView::setImg(ptr<QImage> tmpImg)
+{
+
+	imgPtr = tmpImg;
+	imgLabel->setPixmap(QPixmap::fromImage(*imgPtr));
+}
+
 void MainView::init()
 {
 	setWindowTitle("Welcome!");
@@ -118,6 +138,7 @@ void MainView::init()
 	latexEditor->setStyleSheet(backgroundWhite);
 
 	imgLabel->setStyleSheet(backgroundWhite);
+	latexLabel->setStyleSheet(backgroundWhite);
 	latexEditor->setStyleSheet(backgroundWhite);
 
 	loadButton->setStyleSheet(backgroundWhite);
@@ -135,6 +156,9 @@ void MainView::init()
 
 	systemOperationsLabel->setStyleSheet(backgroundWhite);
 	latexOperationsLabel->setStyleSheet(backgroundWhite);
+
+	changeLatexToLabel();
+	latexLabel->setAlignment(Qt::AlignCenter);
 
 	initSlots();
 	initMenu();
@@ -179,7 +203,14 @@ void MainView::initDefaultContent()
 	setFilePath(defaultText);
 }
 
-const ptr<QImage> MainView::getImgPtr()
+void MainView::setSvg(const ptr<QImage> tmpSvgPtr)
+{
+	svgPtr = tmpSvgPtr;
+	latexLabel->setPixmap(QPixmap::fromImage(*svgPtr));
+	
+}
+
+const ptr<QImage> MainView::getImg()
 {
 	return imgPtr;
 }
