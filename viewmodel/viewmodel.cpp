@@ -29,7 +29,9 @@ void ViewModel::bindMainViewToViewModel()
 	
 	//bind view to viewmodel
 	mainView->bindgetLatexFromBase64(getLatexFromBase64);
-
+	mainView->bindgetSvgFromLatexString(getSvgFromLatexString);
+	mainView->bindprettifyLatexString(prettifyLatexString);
+	
 }
 
 void ViewModel::bindViewModelToRemoteModel(ptr<RemoteModel> model)
@@ -38,14 +40,18 @@ void ViewModel::bindViewModelToRemoteModel(ptr<RemoteModel> model)
 
 	//bind viewmodel to remotemodel
 	getLatexFromBase64 = [this]() {
-		auto imgPtr = mainView->getImgPtr();
+		auto imgPtr = mainView->getImg();
 		QByteArray byteArray;
 		QBuffer buffer(&byteArray);
 		imgPtr->save(&buffer, "PNG");
 		auto imgBase64 = QString::fromLatin1(byteArray.toBase64().data());
 		remoteModel->getLatexJsonFromBase64(imgBase64.toStdString());
 	};
-
+	getSvgFromLatexString = [this]() {
+		auto latexString = mainView->getLatexString();
+		remoteModel->getSvgFromLatexString(latexString.toStdString());
+	};
+	
 }
 
 void ViewModel::bindRemoteModelToViewModel()
@@ -54,6 +60,9 @@ void ViewModel::bindRemoteModelToViewModel()
 	//bind remotemodel to localmodel;
 	remoteModel->bindgetLatexJsonSuccess(getLatexJsonSuccess);
 	remoteModel->bindgetLatexJsonFail(getLatexJsonFail);
+
+	remoteModel->bindgetSvgFromLatexStringSuccess(getSvgFromLatexStringSuccess);
+	remoteModel->bindgetSvgFromLatexStringFail(getSvgFromLatexStringFail);
 }
 
 void ViewModel::bindViewModelToMainView(ptr<MainView> view)
@@ -69,6 +78,31 @@ void ViewModel::bindViewModelToMainView(ptr<MainView> view)
 
 		mainView->setLatexString(QString::fromStdString(latexJson));
 	};
+
+	getLatexJsonFail = [this]() {
+
+	};
+
+	getSvgFromLatexStringSuccess = [this]() {
+		auto svgByteArray = QString::fromStdString(remoteModel->getSvg()).toLatin1();
+		QSvgRenderer renderer(svgByteArray);
+		auto svgImage = std::make_shared<QImage>(500, 200, QImage::Format_ARGB32);
+		QPainter painter(svgImage.get());
+		renderer.render(&painter);
+		mainView->setSvg(svgImage);
+	};
+
+	getSvgFromLatexStringFail = [this]() {
+
+	};
+	prettifyLatexString = [this]() {
+		auto latexString = mainView->getLatexString().toStdString();
+		std::string tmp;
+		for (auto i : latexString) {
+			if (i != ' ') tmp.push_back(i);
+		}
+		mainView->setLatexString(QString::fromStdString(tmp));
+	};
 }
 
 std::string ViewModel::convertLatexJsonToLatexString(std::string latexJson)
@@ -79,3 +113,4 @@ std::string ViewModel::convertLatexJsonToLatexString(std::string latexJson)
 	document.Parse(latexJson.c_str());
 	return document["words_result"][0]["words"].GetString();
 }
+

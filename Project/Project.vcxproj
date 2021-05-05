@@ -32,7 +32,7 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>5.15.0_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;widgets;svg</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
@@ -102,7 +102,7 @@ copy  "$(SolutionDir)dll\HttpManager.dll" "$(OutDir)"</Command>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -130,7 +130,7 @@ copy  "$(SolutionDir)dll\HttpManager.dll" "$(OutDir)"</Command>
     <QtMoc Include="..\view\mainview.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="..\view\view.qrc" />
+    <QtRcc Include="..\view\mainview.qrc" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\app\app.cpp" />
@@ -144,7 +144,7 @@ copy  "$(SolutionDir)dll\HttpManager.dll" "$(OutDir)"</Command>
     <ClCompile Include="..\view\mainview.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="..\view\view.ui" />
+    <QtUic Include="..\view\mainview.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
