@@ -4,7 +4,7 @@
 //#include <QGridLayout>
 //#include <QPushButton>
 #include "def.h"
-#include "ui_view.h"
+#include "ui_mainview.h"
 #include "event.h"
 
 class MainView : public QMainWindow
@@ -57,6 +57,7 @@ private:
 
 	eventId getLatexFromBase64;
 	eventId getSvgFromLatexString;
+	eventId prettifyLatexString;
 	
 	
 	//data need to be stored for a while
@@ -101,5 +102,6 @@ public:
 
 	BIND_TEMPLATE(getLatexFromBase64)
 	BIND_TEMPLATE(getSvgFromLatexString)
+	BIND_TEMPLATE(prettifyLatexString)
 
 };

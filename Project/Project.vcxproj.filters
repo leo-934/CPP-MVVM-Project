@@ -53,7 +53,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="..\view\view.qrc">
+    <QtRcc Include="..\view\mainview.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
   </ItemGroup>
@@ -115,7 +115,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="..\view\view.ui">
+    <QtUic Include="..\view\mainview.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

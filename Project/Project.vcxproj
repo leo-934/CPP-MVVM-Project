@@ -130,7 +130,7 @@ copy  "$(SolutionDir)dll\HttpManager.dll" "$(OutDir)"</Command>
     <QtMoc Include="..\view\mainview.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="..\view\view.qrc" />
+    <QtRcc Include="..\view\mainview.qrc" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\app\app.cpp" />
@@ -144,7 +144,7 @@ copy  "$(SolutionDir)dll\HttpManager.dll" "$(OutDir)"</Command>
     <ClCompile Include="..\view\mainview.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="..\view\view.ui" />
+    <QtUic Include="..\view\mainview.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

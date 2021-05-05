@@ -30,6 +30,7 @@ void ViewModel::bindMainViewToViewModel()
 	//bind view to viewmodel
 	mainView->bindgetLatexFromBase64(getLatexFromBase64);
 	mainView->bindgetSvgFromLatexString(getSvgFromLatexString);
+	mainView->bindprettifyLatexString(prettifyLatexString);
 	
 }
 
@@ -50,7 +51,7 @@ void ViewModel::bindViewModelToRemoteModel(ptr<RemoteModel> model)
 		auto latexString = mainView->getLatexString();
 		remoteModel->getSvgFromLatexString(latexString.toStdString());
 	};
-
+	
 }
 
 void ViewModel::bindRemoteModelToViewModel()
@@ -93,6 +94,14 @@ void ViewModel::bindViewModelToMainView(ptr<MainView> view)
 
 	getSvgFromLatexStringFail = [this]() {
 
+	};
+	prettifyLatexString = [this]() {
+		auto latexString = mainView->getLatexString().toStdString();
+		std::string tmp;
+		for (auto i : latexString) {
+			if (i != ' ') tmp.push_back(i);
+		}
+		mainView->setLatexString(QString::fromStdString(tmp));
 	};
 }
 

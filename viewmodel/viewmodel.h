@@ -13,11 +13,12 @@ private:
 	ptr<RemoteModel> remoteModel;
 	ptr<MainView> mainView;
 
-	//view to vm
+	//view to vm to model
 	callbackFunction getLatexFromBase64;
 	callbackFunction getSvgFromLatexString;
+	callbackFunction prettifyLatexString;
 
-	//model to vm
+	//model to vm to view
 	callbackFunction getLatexJsonSuccess;
 	callbackFunction getLatexJsonFail;
 	callbackFunction getSvgFromLatexStringSuccess;

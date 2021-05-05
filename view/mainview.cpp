@@ -109,11 +109,34 @@ void MainView::onApplyButtonClicked()
 
 void MainView::onDownloadButtonClicked()
 {
+	QString savePath = QFileDialog::getSaveFileName(
+		this,
+		"save image",
+		"",
+		"all"
+	);
+	if (!savePath.isEmpty()) {
+		if (!(imgPtr->save(savePath))) {
+			QMessageBox::information(
+				this,
+				"error",
+				"can't save image"
+			);
+		}
+	}
+	else {
+		QMessageBox::information(
+			this,
+			"error",
+			"savePath can't be empty"
+		);
+	}
 	qDebug() << "downloadbutton clicked";
 }
 
 void MainView::onPrettifyButtonClicked()
 {
+	EventManager::raiseEvent(prettifyLatexString);
 	qDebug() << "prettifybutton clicked";
 }
 
